@@ -24,3 +24,5 @@ print(s.alguns_avisos())
 
 gerar_pdf(s)
 print("PDF gerado com sucesso!")
+
+# Testando commit
