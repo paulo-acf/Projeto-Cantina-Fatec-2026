@@ -17,6 +17,8 @@ s = Sistema() # C O L O C A R   D A D O S   M A N U A I S   L O G O   A B A I X 
 # s.adicionar_produto("Salgadinho milho 100g", 2.20, 5.00, "2026-02-20", "2026-08-20", 60)
 # s.adicionar_produto("Sanduíche natural", 5.00, 10.00, "2026-03-25", "2026-03-26", 15)
 # s.adicionar_produto("Café expresso", 1.00, 4.00, "2026-03-25", "2026-03-25", 70)
+# s.adicionar_produto("Café expresso duplo", 1.00, 4.00, "2026-03-25", "2026-03-25", 70)
+# s.adicionar_produto("Café expresso triplo", 1.00, 4.00, "2026-03-25", "2026-03-25", 70)
 
 # # 🔴 Inserir produto
 # s.adicionar_produto("Coxinha", 3.5, 7.0, "2026-03-20", "2026-03-25", 30)
@@ -33,7 +35,7 @@ s = Sistema() # C O L O C A R   D A D O S   M A N U A I S   L O G O   A B A I X 
 # # 🔴 Gerar PDF
 # gerar_pdf(s)                                    # Saída --> PDF com relatório completo
 
-# @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @
+# # @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @
 # # COMENTAR QUANDO NÃO FOR NECESSÁRIO:
 # #   •PARA FAZER COM FAKER (e não manualmente) (•Nome produto •Preço compra •Preço venda •Datas •Quantidade)
 # popular(s, 5)
