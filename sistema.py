@@ -1,3 +1,6 @@
+# Módulo --> Um arquivo .py reutilizável
+# Biblioteca --> Conjunto de módulos prontos para uso
+
 from datetime import datetime
 # "datetime" na linha acima, respectivamente --> •Módulo •Classe
 # Permite trabalhar com •datas e •horas
@@ -71,11 +74,20 @@ class Sistema: # Classe ("molde", "planta") --> Aqui, é como se fosse a estrutu
 #######   V E N D A S
 ##############################
 
-    def vender(self, id_produto, pessoa, qtd):
+    def vender(self, id_produto, pessoa, qtd, categoria, curso):
 
         # Prioridade --> Produtos mais antigos (FIFO) (Fila)
         produtos = sorted(self.__produtos, key = lambda x: x["data_compra"])
         # sorted(), apenas --> Ordena •de A até Z ou •do Menor para o Maior 
+
+            # "Significado" de "lambda x: x["data_compra"]" --> Para cada item (x), use x["data_compra"]:
+            #    •Como base de comparação...
+            #    •Para ♦comparar e ♦colocar as datas em ordem crescente (da menor [mais antiga] para a maior [mais recente])
+
+            # Praticamente, seria o mesmo que:
+
+            # def pegar_data(x):
+            #     return x["data_compra"]
 
         for p in produtos:
 
@@ -85,21 +97,26 @@ class Sistema: # Classe ("molde", "planta") --> Aqui, é como se fosse a estrutu
                     return False
 
                 total = p["preco_venda"] * qtd
+                # Aqui, cada "preço_venda" está diretamente relacionado a uma específica "quantidade" acima
+                # •"preço_venda" e •"quantidade" fazem parte de um mesmo elemento/dicionário
 
+                # Baixa de estoque
                 p["quantidade"] -= qtd
 
-                self.registrar_pagamento(
-                    pessoa,
-                    "aluno",
-                    "IA",
-                    total
+                # Pagamento
+                self.registrar_pagamento( # --> Vide   "P A G A M E N T O S"
+                    pessoa, # --> "nome" em "def registrar_pagamento" em    "P A G A M E N T O S"
+                    categoria, # --> "categoria" em "def registrar_pagamento" em    "P A G A M E N T O S"
+                    curso, # --> "curso" em "def registrar_pagamento" em    "P A G A M E N T O S"
+                    total # --> "valor" em "def registrar_pagamento" em    "P A G A M E N T O S"
                 )
 
+                # consumo
                 self.__consumos.append({
-                    "produto": p["nome"],
-                    "pessoa": pessoa,
-                    "quantidade": qtd,
-                    "total": total
+                    "produto": p["nome"], # Vide if acima
+                    "pessoa": pessoa, # Vide def acima
+                    "quantidade": qtd, # Vide if acima
+                    "total": total # Vide if acima
                 })
 
                 return True
@@ -115,6 +132,9 @@ class Sistema: # Classe ("molde", "planta") --> Aqui, é como se fosse a estrutu
 
     def relatorio_consumo(self):
         return self.__consumos # Vide   "D A D O S"
+    
+    def relatorio_estoque(self):
+        return self.__produtos # Vide   "D A D O S"
 
 ##############################
 #######   A V I S O S
@@ -124,10 +144,12 @@ class Sistema: # Classe ("molde", "planta") --> Aqui, é como se fosse a estrutu
         avisos = []
 
         for p in self.__produtos:
-            if p["quantidade"] < 5:
+            if p["quantidade"] < 5: # Está em self.__produtos (vide   "E S T O Q U E")
+                # avisos.append(f"Estoque baixo: {p["nome"]}")
                 avisos.append(f"Estoque baixo: {p['nome']}")
 
-            if p["data_vencimento"] < str(datetime.now().date()):
+            if p["data_vencimento"] < str(datetime.now().date()): # Significado --> "Da data e hora atual, pegue apenas a data."
+                # avisos.append(f"Vencido: {p["nome"]}")
                 avisos.append(f"Vencido: {p['nome']}")
 
         return avisos

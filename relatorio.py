@@ -62,6 +62,3 @@ def gerar_pdf(sistema):
 
     # Gerar PDF
     doc.build(elementos)
-
-##################################################################### lista encapsulada (está dentro da classe)
-##################################################################### lista encadeada (é um nó - tem ponteiros)
